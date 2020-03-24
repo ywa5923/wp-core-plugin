@@ -3,8 +3,6 @@
 namespace WOH\Core;
 
 use WOH\File\ScanDirectory;
-use ReflectionClass;
-
 
 class ActionsLoader
 {
@@ -12,14 +10,14 @@ class ActionsLoader
     public function loadAllActions($namespace)
     {
 
-        $actionsDir = plugin_dir_path(dirname(__FILE__, 2)) . 'Actions';
+        $actionsDir = plugin_dir_path(dirname(__FILE__, 4)) . 'src/Actions';
 
         $scan = new ScanDirectory($actionsDir);
 
         foreach ($scan->by('php') as $file) {
             $isAction = strpos($file, 'Action');
 
-            if ($isAction !== 0 && $isAction !== FALSE) {
+            if ($isAction !== 0 || $isAction !== FALSE) {
 
                 $obj = $this->makeObject($namespace, $file);
 
