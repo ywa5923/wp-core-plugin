@@ -1,0 +1,19 @@
+{
+  "name": "ywa/wp-oop-helpers",
+  "description": "A set of classes used in wp object oriented plugins",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Ivan Ion",
+      "email": "ywa5923@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "minimum-stability": "alpha",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "WOH": "./src"
+    }
+  }
+}
