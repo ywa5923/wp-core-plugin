@@ -14,17 +14,27 @@ class ScanDirectory
     public function by(string $extension)
     {
 
-        $splFiles = new \FilesystemIterator($this->dirPath);
 
-        $splFiles = new \RegexIterator($splFiles, "/\.({$extension})$/");
+        $actionsDirectory = new \RecursiveDirectoryIterator($this->dirPath);
+        $iterator = new \RecursiveIteratorIterator($actionsDirectory);
 
-        $retArray = [];
+        $actionClassNames = array();
+        foreach ($iterator as $info) {
+            //When looping through the RecursiveDirectoryIterator , the results use  SplFileInfo
+            if ($info->getExtension() === $extension) {
 
-        foreach ($splFiles as $splFile) {
-            //yield $splFile->getBasename('.' . $extension);
-            $retArray[] = $splFile->getBasename('.' . $extension);
+                ///var/www/html/wp-content/plugins/wp-oop-plugin/src/Actions/Activation/Activate.php
+                //extract the classname substring without extension: ex Actions/Activation/Activate
+
+                $actionsPosition = strpos($info->getPathname(), "Actions");
+                $className = substr($info->getPathname(), $actionsPosition, -4);
+
+
+                $actionClassNames[] =  str_replace('/', '\\', $className);
+            }
         }
 
-        return $retArray;
+
+        return $actionClassNames;
     }
 }
