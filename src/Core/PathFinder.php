@@ -5,20 +5,18 @@ namespace WOH\Core;
 
 class PathFinder
 {
-    private $viewPath;
+    private $viewsPath;
 
     private $srcPath;
-
-    private $blocksPath;
 
     private $assetsUrl;
 
     public function __construct()
     {
-        $this->viewPath = plugin_dir_path(dirname(__FILE__, 4)) . 'src/Views/';
-        $this->srcPath = plugin_dir_path(dirname(__FILE__, 4)) . 'src/';
-        $this->blocksPath = plugin_dir_path(dirname(__FILE__, 4)) . 'src/Views/Blocks/';
-        $this->assetsUrl = plugin_dir_url(dirname(__FILE__, 4)) . 'assets/';
+        $this->viewsPath = plugin_dir_path(dirname(__FILE__, 5)) . 'src/Views/';
+        $this->srcPath = plugin_dir_path(dirname(__FILE__, 5)) . 'src/';
+        $this->blocksPath = plugin_dir_path(dirname(__FILE__, 5)) . 'src/Views/Blocks/';
+        $this->assetsUrl = plugin_dir_url(dirname(__FILE__, 5)) . 'assets/';
     }
 
     /**
@@ -26,7 +24,7 @@ class PathFinder
      */
     public function getViewsPath()
     {
-        return $this->viewPath;
+        return $this->viewsPath;
     }
 
     /**
@@ -37,13 +35,7 @@ class PathFinder
         return $this->srcPath;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBlocksPath()
-    {
-        return $this->blocksPath;
-    }
+
     /**
      * @return mixed
      */
